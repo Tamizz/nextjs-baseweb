@@ -3,9 +3,10 @@ import { Server } from 'styletron-engine-atomic';
 import { Provider as StyletronProvider } from 'styletron-react';
 import { styletron } from '../styletron';
 import { DocumentProps } from 'next/document';
+import { DocumentContext } from 'next/document';
 
 class MyDocument extends Document<DocumentProps & { stylesheets: any[] }> {
-  static async getInitialProps(context) {
+  static async getInitialProps(context: DocumentContext) {
     const renderPage = () =>
       context.renderPage({
         enhanceApp: (App) => (props) =>
@@ -28,15 +29,7 @@ class MyDocument extends Document<DocumentProps & { stylesheets: any[] }> {
     return (
       <Html>
         <Head>
-          {this.props.stylesheets.map((sheet, i) => (
-            <style
-              className="_styletron_hydrate_"
-              dangerouslySetInnerHTML={{ __html: sheet.css }}
-              media={sheet.attrs.media}
-              data-hydrate={sheet.attrs['data-hydrate']}
-              key={i}
-            />
-          ))}
+          <link rel="stylesheet" href="/styles/fonts.css" />
         </Head>
         <body>
           <Main />

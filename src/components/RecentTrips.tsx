@@ -26,7 +26,15 @@ const RecentTrips = () => {
         columns={['Rider/Recipient', 'Program', 'Status', 'Actions']}
         data={data.map((row) => [
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <Avatar name={row[0]} size="scale800" marginRight="scale300" />
+            <Avatar
+              name={row[0]}
+              size="scale800"
+              overrides={{
+                Root: {
+                  style: { marginRight: '12px' } // Adjust the value as needed
+                }
+              }}
+            />
             <div>
               <div>{row[0]}</div>
               <div>{row[1]}</div>
