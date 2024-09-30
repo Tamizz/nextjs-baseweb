@@ -1,7 +1,6 @@
 import React from 'react';
 import { Provider as StyletronProvider } from 'styletron-react';
 import { LightTheme, BaseProvider } from 'baseui';
-import { Grid, Cell } from 'baseui/layout-grid';
 import styled, { createGlobalStyle } from 'styled-components';
 import Header from '../components/HeaderNavigation';
 import HomePage from '../components/Home-page';
