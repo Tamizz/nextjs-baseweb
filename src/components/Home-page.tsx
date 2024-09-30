@@ -3,7 +3,6 @@ import { useStyletron } from 'baseui';
 import Sidebar from './Sidebar';
 import RecentTrips from './RecentTrips';
 import Suggestions from './Suggestions';
-import BookingTemplates from './BookingTemplates';
 
 const HomePage = () => {
   const [css, theme] = useStyletron();
@@ -11,8 +10,9 @@ const HomePage = () => {
   return (
     <div className={css({
       display: 'flex',
-      height: 'calc(100vh - 64px)',
-      overflowY: 'auto',
+      height: 'calc(100vh - 64px)', // Subtract header height
+      marginTop: '64px', // Add margin to account for fixed header
+      overflowY: 'hidden', // Changed from 'auto' to 'hidden'
     })}>
       <Sidebar />
       <div className={css({
@@ -22,9 +22,10 @@ const HomePage = () => {
         padding: '24px',
         overflowY: 'auto',
       })}>
-        <BookingTemplates />
         <RecentTrips />
-        <Suggestions />
+        <div className={css({ marginTop: '24px' })}>
+          <Suggestions />
+        </div>
       </div>
     </div>
   );

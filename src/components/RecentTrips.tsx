@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Table } from 'baseui/table';
+import { Table } from 'baseui/table-semantic';
 import { Button, KIND } from 'baseui/button';
 import { Avatar } from 'baseui/avatar';
 import { ProgressBar } from 'baseui/progress-bar';
@@ -56,6 +56,17 @@ const RecentTrips = () => {
           </div>,
           <Button kind="secondary">{row[4]}</Button>
         ])}
+        overrides={{
+          Root: {
+            style: {
+              border: '2px solid #E2E2E2', // Updated to match the card component border color
+              borderRadius: '12px',
+              overflow: 'hidden',
+              marginLeft: '16px',
+              marginRight: '16px',
+            },
+          },
+        }}
       />
     </div>
   );

@@ -1,13 +1,17 @@
 import * as React from 'react';
 import { Card, StyledBody } from 'baseui/card';
-import { Button } from 'baseui/button';
+import { Button, SIZE, SHAPE } from 'baseui/button';
 import { Grid, Cell } from 'baseui/layout-grid';
 import { Tag } from 'baseui/tag';
+import { ListHeading } from 'baseui/list';
 
 const Suggestions = () => {
   return (
     <div>
-      <h2>Suggestions</h2>
+      <ListHeading
+        heading="Suggestions"
+        maxLines={1}
+      />
       <Grid>
         <Cell span={[4, 8, 6]}>
           <Card
@@ -16,6 +20,7 @@ const Suggestions = () => {
                 style: {
                   display: 'flex',
                   alignItems: 'center',
+                  borderBottomWidth: '0',
                 }
               }
             }}
@@ -49,11 +54,11 @@ const Suggestions = () => {
         </Cell>
       </Grid>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '16px' }}>
-        <Tag>Uber voucher</Tag>
-        <Tag>Large cars</Tag>
-        <Tag>Uber Reserve</Tag>
-        <Tag>Hourly Ride</Tag>
-        <Tag>Uber Green</Tag>
+        <Button size={SIZE.compact} kind="secondary">Uber voucher</Button>
+        <Button size={SIZE.compact} kind="secondary">Large cars</Button>
+        <Button size={SIZE.compact} kind="secondary">Uber Reserve</Button>
+        <Button size={SIZE.compact} kind="secondary">Hourly Ride</Button>
+        <Button size={SIZE.compact} kind="secondary">Uber Green</Button>
       </div>
     </div>
   );
