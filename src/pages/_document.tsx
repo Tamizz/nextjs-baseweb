@@ -1,48 +1,50 @@
-// @ts-ignore
-import {Server, Sheet} from 'styletron-engine-atomic';
-import {styletron} from '../styletron';
-import {DocumentContext, Head, Html, Main, NextScript} from 'next/document';
-import {Provider as StyletronProvider} from 'styletron-react';
-import React from 'react';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { Server } from 'styletron-engine-atomic';
+import { Provider as StyletronProvider } from 'styletron-react';
+import { styletron } from '../styletron';
+import { DocumentProps } from 'next/document';
 
-type Props = {
-  stylesheets: Sheet[];
-};
+class MyDocument extends Document<DocumentProps & { stylesheets: any[] }> {
+  static async getInitialProps(context) {
+    const renderPage = () =>
+      context.renderPage({
+        enhanceApp: (App) => (props) =>
+          (
+            <StyletronProvider value={styletron}>
+              <App {...props} />
+            </StyletronProvider>
+          ),
+      });
 
-const MyDocument = ({stylesheets}: Props) => {
-  return (
-    <Html>
-      <Head>
-        {stylesheets.map((sheet, i) => (
-          <style
-            key={i}
-            className="_styletron_hydrate_"
-            dangerouslySetInnerHTML={{__html: sheet.css}}
-            media={sheet.attrs.media}
-            data-hydrate={sheet.attrs['data-hydrate']}
-          />
-        ))}
-      </Head>
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  );
-};
+    const initialProps = await Document.getInitialProps({
+      ...context,
+      renderPage,
+    });
+    const stylesheets = (styletron as Server).getStylesheets() || [];
+    return { ...initialProps, stylesheets };
+  }
 
-MyDocument.getInitialProps = async (ctx: DocumentContext) => {
-  const page = await ctx.renderPage({
-    // eslint-disable-next-line react/display-name
-    enhanceApp: (App: any) => (props: any) =>
-      (
-        <StyletronProvider value={styletron}>
-          <App {...props} />
-        </StyletronProvider>
-      ),
-  });
-  const stylesheets = (styletron as Server).getStylesheets() || [];
-  return {...page, stylesheets};
-};
+  render() {
+    return (
+      <Html>
+        <Head>
+          {this.props.stylesheets.map((sheet, i) => (
+            <style
+              className="_styletron_hydrate_"
+              dangerouslySetInnerHTML={{ __html: sheet.css }}
+              media={sheet.attrs.media}
+              data-hydrate={sheet.attrs['data-hydrate']}
+              key={i}
+            />
+          ))}
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
+}
 
 export default MyDocument;

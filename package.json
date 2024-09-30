@@ -12,18 +12,22 @@
   },
   "dependencies": {
     "@types/node": "^18.16.1",
-    "@types/react": "^18.2.0",
     "@vitejs/plugin-react-swc": "^3.3.0",
     "baseui": "^12.2.0",
     "eslint-config-next": "^13.3.1",
     "eslint-config-prettier": "^8.8.0",
-    "next": "^13.3.1",
+    "next": "^14.2.13",
     "prettier": "^2.8.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "styletron-engine-atomic": "^1.6.2",
     "styletron-engine-monolithic": "^1.0.0",
     "styletron-react": "^6.1.0",
     "typescript": "^5.0.4",
     "vitest": "^0.30.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0"
   }
 }
