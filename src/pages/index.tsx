@@ -3,8 +3,6 @@ import { Provider as StyletronProvider } from 'styletron-react';
 import { LightTheme, BaseProvider } from 'baseui';
 import { Grid, Cell } from 'baseui/layout-grid';
 import styled, { createGlobalStyle } from 'styled-components';
-
-// Check these imports
 import Header from '../components/HeaderNavigation';
 import Sidebar from '../components/Sidebar';
 import BookingTemplates from '../components/BookingTemplates';
