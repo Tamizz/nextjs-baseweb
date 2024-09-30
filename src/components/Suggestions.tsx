@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Card, StyledBody } from 'baseui/card';
-import { Button, SIZE, SHAPE } from 'baseui/button';
-import { Grid, Cell } from 'baseui/layout-grid';
-import { Tag } from 'baseui/tag';
+import { Button, SIZE } from 'baseui/button';
+import { ListItem, ListItemLabel } from 'baseui/list';
 import { ListHeading } from 'baseui/list';
+import { FlexGrid, FlexGridItem } from 'baseui/flex-grid';
 
 const Suggestions = () => {
   return (
@@ -12,54 +12,65 @@ const Suggestions = () => {
         heading="Suggestions"
         maxLines={1}
       />
-      <Grid>
-        <Cell span={[4, 8, 6]}>
-          <Card
-            overrides={{
-              Root: {
-                style: {
-                  display: 'flex',
-                  alignItems: 'center',
-                  borderBottomWidth: '0',
-                }
-              }
-            }}
-          >
-            <StyledBody>
-              <h3>Request your group trip now</h3>
-              <p>Luxury vans to coach buses. Get instant pricing and request.</p>
-              <Button>Try Uber Charter</Button>
-            </StyledBody>
-            <img src="/path-to-van-image.jpg" alt="Van" style={{ width: '40%', height: 'auto' }} />
-          </Card>
-        </Cell>
-        <Cell span={[4, 8, 6]}>
-          <Card
-            overrides={{
-              Root: {
-                style: {
-                  backgroundColor: '#000080',
-                  color: 'white',
-                }
-              }
-            }}
-          >
-            <StyledBody>
-              <h3>Airport Rides</h3>
-              <p>Request a ride to or from the airport. Rides at 700+ airports</p>
-              <Button>Try reserve airport</Button>
-            </StyledBody>
-            <img src="/path-to-airplane-image.jpg" alt="Airplane" style={{ width: '40%', height: 'auto' }} />
-          </Card>
-        </Cell>
-      </Grid>
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '16px' }}>
-        <Button size={SIZE.compact} kind="secondary">Uber voucher</Button>
-        <Button size={SIZE.compact} kind="secondary">Large cars</Button>
-        <Button size={SIZE.compact} kind="secondary">Uber Reserve</Button>
-        <Button size={SIZE.compact} kind="secondary">Hourly Ride</Button>
-        <Button size={SIZE.compact} kind="secondary">Uber Green</Button>
+      <div style={{ overflowX: 'auto', whiteSpace: 'nowrap', padding: '16px 0' }}>
+        <FlexGrid
+          flexGridColumnCount={[1, 1, 2, 3]}
+          flexGridColumnGap="scale300"
+          flexGridRowGap="scale300"
+          overrides={{
+            Block: {
+              style: {
+                display: 'flex',
+                flexWrap: 'nowrap',
+                margin: '0 8px',
+              },
+            },
+          }}
+        >
+          {[1, 2, 3, 4].map((_, index) => (
+            <FlexGridItem 
+              key={index}
+              overrides={{
+                Block: {
+                  style: {
+                    padding: '0 8px',
+                    flexShrink: 0,
+                    width: '336px', // 320px card width + 16px padding
+                  },
+                },
+              }}
+            >
+              <Card
+                overrides={{
+                  Root: {
+                    style: {
+                      width: '100%',
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                    }
+                  }
+                }}
+              >
+                <StyledBody>
+                  <h3>Request your group trip now</h3>
+                  <p>Luxury vans to coach buses. Get instant pricing and request.</p>
+                  <Button size={SIZE.compact}>Try Uber Charter</Button>
+                </StyledBody>
+                <img src="/path-to-van-image.jpg" alt="Van" style={{ width: '40%', height: 'auto' }} />
+              </Card>
+            </FlexGridItem>
+          ))}
+        </FlexGrid>
       </div>
+      
+      <ul style={{ padding: 0, listStyle: 'none' }}>
+        {['Uber voucher', 'Large cars', 'Uber Reserve', 'Hourly Ride', 'Uber Green'].map((item, index) => (
+          <ListItem key={index}>
+            <ListItemLabel>{item}</ListItemLabel>
+          </ListItem>
+        ))}
+      </ul>
     </div>
   );
 };
