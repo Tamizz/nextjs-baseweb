@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Table } from 'baseui/table';
-import { Button } from 'baseui/button';
-import { Tag } from 'baseui/tag';
+import { Button, KIND } from 'baseui/button';
 import { Avatar } from 'baseui/avatar';
 import { ProgressBar } from 'baseui/progress-bar';
+import { ListHeading } from 'baseui/list';
+import { Block } from 'baseui/block';
 
 const RecentTrips = () => {
   const data = [
@@ -15,13 +16,21 @@ const RecentTrips = () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <h2>Recent trips</h2>
-        <div>
-          <Tag closeable={false}>In progress (7)</Tag>
-          <Tag closeable={false}>Future (12)</Tag>
-        </div>
-      </div>
+      <ListHeading
+        heading="Recent trips"
+        endEnhancer={() => (
+          <>
+            <Block marginRight="scale300">
+              <Button kind={KIND.secondary} size="compact">
+                In progress (7)
+              </Button>
+            </Block>
+            <Button kind={KIND.secondary} size="compact">
+              Future (12)
+            </Button>
+          </>
+        )}
+      />
       <Table
         columns={['Rider/Recipient', 'Program', 'Status', 'Actions']}
         data={data.map((row) => [
@@ -31,7 +40,7 @@ const RecentTrips = () => {
               size="scale800"
               overrides={{
                 Root: {
-                  style: { marginRight: '12px' } // Adjust the value as needed
+                  style: { marginRight: '12px' }
                 }
               }}
             />

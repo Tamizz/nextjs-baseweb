@@ -16,15 +16,14 @@ const Header: React.FC = () => {
       overrides={{
         Root: {
           style: ({ $theme }) => ({
-            outline: `${$theme.colors.warning200} solid`,
-            backgroundColor: $theme.colors.warning200,
+            backgroundColor: $theme.colors.white,
             padding: '0',
-            // Add these properties to make the header fixed
             position: 'fixed',
             top: 0,
             left: 0,
             right: 0,
             zIndex: 1000,
+            borderBottom: `1px solid ${$theme.colors.borderOpaque}`,
           })
         }
       }}

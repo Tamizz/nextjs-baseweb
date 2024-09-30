@@ -4,11 +4,7 @@ import { LightTheme, BaseProvider } from 'baseui';
 import { Grid, Cell } from 'baseui/layout-grid';
 import styled, { createGlobalStyle } from 'styled-components';
 import Header from '../components/HeaderNavigation';
-import Sidebar from '../components/Sidebar';
-import BookingTemplates from '../components/BookingTemplates';
-import RecentTrips from '../components/RecentTrips';
-import Suggestions from '../components/Suggestions';
-
+import HomePage from '../components/Home-page';
 import { styletron } from '../styletron';
 
 const GlobalStyles = createGlobalStyle`
@@ -59,12 +55,7 @@ function Home() {
             <Header />
           </HeaderWrapper>
           <Content>
-            <Sidebar />
-            <Main>
-              <BookingTemplates />
-              <RecentTrips />
-              <Suggestions />
-            </Main>
+            <HomePage />
           </Content>
         </Wrapper>
       </BaseProvider>

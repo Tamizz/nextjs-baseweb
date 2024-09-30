@@ -12,17 +12,12 @@ const Sidebar = () => {
     <div
       className={css({
         width: '320px',
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        height: '100vh',
+        height: '100%',
         padding: '24px',
-        marginTop: '64px',
         overflowY: 'auto',
         boxSizing: 'border-box',
         backgroundColor: theme.colors.white,
-        borderRight: `2px solid ${theme.colors.borderOpaque}`, // Added 2px right border
+        borderRight: `1px solid ${theme.colors.borderOpaque}`,
       })}
     >
       <Button
